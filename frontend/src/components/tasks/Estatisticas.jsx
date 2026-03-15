@@ -5,28 +5,34 @@ const Estatisticas = ({ tasks }) => {
   const pendentes = total - concluidas;
 
   return (
-    <div className="mt-15 text-gray-700 font-sans">
+    <div className="flex items-center gap-3">
 
-      <h2 className="font-bold mb-3 flex items-center gap-2">
+      <span className="text-sm font-medium text-gray-600 flex items-center gap-1">
         📊 Estatísticas
-      </h2>
+      </span>
 
-      <div className="grid grid-cols-3 gap-2">
+      <div className="flex gap-2">
 
-        <div className="bg-white shadow rounded p-2 text-center">
-          <p className="text-lg font-bold">{total}</p>
-          <p className="text-xs text-gray-500">Total</p>
-        </div>
+        <span className="bg-gray-100 text-gray-700 text-xs px-3 py-1 rounded-full font-medium flex items-center gap-1">
+          Total
+          <span className="font-bold w-5 text-center tabular-nums">
+            {total}
+          </span>
+        </span>
 
-        <div className="bg-green-100 shadow rounded p-2 text-center">
-          <p className="text-lg font-bold">{concluidas}</p>
-          <p className="text-xs text-gray-500">Concluídas</p>
-        </div>
+        <span className="bg-green-100 text-green-700 text-xs px-3 py-1 rounded-full font-medium flex items-center gap-1">
+          Concluídas
+          <span className="font-bold w-5 text-center tabular-nums">
+            {concluidas}
+          </span>
+        </span>
 
-        <div className="bg-yellow-100 shadow rounded p-2 text-center">
-          <p className="text-lg font-bold">{pendentes}</p>
-          <p className="text-xs text-gray-500">Pendentes</p>
-        </div>
+        <span className="bg-yellow-100 text-yellow-700 text-xs px-3 py-1 rounded-full font-medium flex items-center gap-1">
+          Pendentes
+          <span className="font-bold w-5 text-center tabular-nums">
+            {pendentes}
+          </span>
+        </span>
 
       </div>
 
