@@ -1,4 +1,7 @@
+// Imports Task Model
 import Task from "../models/Task.js";
+// Import Funcão Calcular Reminder
+import { calculateReminder } from "../utils/calculateReminder.js"
 
 // @desc    Buscar todas as tarefas do usuário logado
 // @route   GET /api/tasks
@@ -17,20 +20,34 @@ export const getTasks = async (req, res, next) => {
 // @access  Private
 export const createTask = async (req, res, next) => {
   try {
-    const { title, description, deadline } = req.body;
+    const { title, description, deadline, reminderMinutesBefore } = req.body;
 
     if (!title) {
       res.status(400);
       throw new Error("Título da tarefa é obrigatório");
     }
 
+    //Transforma a string do front em Date
+    const deadlineDate = new Date(deadline)
+
+    // Garante que reminderMinutesBefore seja número válido
+    const minutesBefore = reminderMinutesBefore != null ? Number(reminderMinutesBefore) : 30
+
+    // Calcula reminderAt corretamente usando o Date e minutos válidos
+    const reminderAt = calculateReminder(deadlineDate, minutesBefore);
+
+    //Cria a task no banco
     const task = await Task.create({
       user: req.user._id,
       title,
       description,
-      deadline
+      deadline: deadlineDate,
+      reminderMinutesBefore: reminderMinutesBefore ?? 30, // default 30 min
+      reminderAt, //horário do lembrete
+      reminderSent: false, // garante que ainda não foi enviado
     });
 
+    //Retorna a task criada
     res.status(201).json(task);
   } catch (error) {
     next(error);

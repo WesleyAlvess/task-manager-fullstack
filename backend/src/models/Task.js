@@ -12,6 +12,17 @@ const taskSchema = new mongoose.Schema(
       type: Date
     },
 
+    // quantos minutos antes enviar lembrete
+    reminderMinutesBefore: {
+      type: Number,
+      default: 30
+    },
+
+    // horário exato do lembrete
+    reminderAt: {
+      type: Date
+    },
+
     // controla se o email já foi enviado
     reminderSent: {
       type: Boolean,
