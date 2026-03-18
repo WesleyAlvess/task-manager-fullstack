@@ -18,6 +18,7 @@ const Dashboard = () => {
   //States
   const [tasks, setTasks] = useState([])
   const [editingTask, setEditingTask] = useState(null)
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
 
 
@@ -66,19 +67,42 @@ const Dashboard = () => {
 
   return (
     <div className="flex flex-col h-screen">
-      {/* área principal */}
       <div className="flex flex-1 overflow-hidden">
-        <Sidebar onCreateTask={handleCreateTask} tasks={tasks} />
-        <div className="flex-1 p-6 overflow-y-auto">
-          <TaskList tasks={tasks} onToggle={handleToggle} onEdit={handleEdit} onDelete={handleDelete} />
-        </div>
+        <Sidebar
+          onCreateTask={handleCreateTask}
+          tasks={tasks}
+          isSidebarOpen={isSidebarOpen}
+          setIsSidebarOpen={setIsSidebarOpen}
+        />
+
+        <main className="flex-1 overflow-y-auto p-4 md:p-6">
+          <div className="md:hidden mb-4">
+            <button
+              onClick={() => setIsSidebarOpen(true)}
+              className="inline-flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-md bg-white border border-gray-300 shadow-sm"
+            >
+              <span className="text-base leading-none">☰</span>
+              <span>Menu</span>
+            </button>
+          </div>
+
+          <TaskList
+            tasks={tasks}
+            onToggle={handleToggle}
+            onEdit={handleEdit}
+            onDelete={handleDelete}
+          />
+        </main>
       </div>
+
       {editingTask && (
-        <TaskModal task={editingTask}
+        <TaskModal
+          task={editingTask}
           onClose={() => setEditingTask(null)}
-          onSave={handleUpdateTask} />
+          onSave={handleUpdateTask}
+        />
       )}
-      {/* footer */}
+
       <Rodape />
     </div>
   );

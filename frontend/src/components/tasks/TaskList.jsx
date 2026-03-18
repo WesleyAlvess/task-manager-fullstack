@@ -33,7 +33,7 @@ const TaskList = ({ tasks, onToggle, onEdit, onDelete }) => {
     <div className="space-y-4">
 
       {/* Header */}
-      <div className="flex justify-between items-start mb-6">
+      <div className="flex flex-col gap-4 lg:flex-row lg:justify-between lg:items-start mb-6">
 
         <div>
           <h1 className="text-xl font-semibold text-gray-800 flex items-center gap-2">

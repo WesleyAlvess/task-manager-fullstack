@@ -82,7 +82,7 @@ const UserProfile = () => {
               Olá, {user?.name?.split(" ")[0]}
             </p>
             <p className="text-xs text-gray-700 font-sans truncate">
-              {user?.email} Email
+              {user?.email}
             </p>
           </div>
         </div>

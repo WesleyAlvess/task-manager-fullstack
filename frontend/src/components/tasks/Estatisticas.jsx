@@ -5,13 +5,13 @@ const Estatisticas = ({ tasks }) => {
   const pendentes = total - concluidas;
 
   return (
-    <div className="flex items-center gap-3">
+    <div className="flex flex-col gap-2 lg:flex-row lg:items-center lg:gap-3 w-full">
 
       <span className="text-sm font-medium text-gray-600 flex items-center gap-1">
         📊 Estatísticas
       </span>
 
-      <div className="flex gap-2">
+      <div className="flex flex-wrap gap-2">
 
         <span className="bg-gray-100 text-gray-700 text-xs px-3 py-1 rounded-full font-medium flex items-center gap-1">
           Total
