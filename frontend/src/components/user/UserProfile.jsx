@@ -17,12 +17,15 @@ const UserProfile = () => {
   const logout = () => {
     try {
       localStorage.removeItem("token")
+      localStorage.removeItem("user")
+
       AppToast({
         type: "success",
         message: "👋 Você saiu da conta!"
       })
+
       setTimeout(() => {
-        window.location.href = "/login"
+        window.location.href = "/"
       }, 1200)
     } catch (error) {
       console.error(error)
@@ -67,7 +70,7 @@ const UserProfile = () => {
 
           {user?.avatar ? (
             <img
-              src={user?.avatar ? `http://localhost:3000/${user.avatar}` : "https://upload.wikimedia.org/wikipedia/commons/6/6a/Mona_Lisa.jpg"}
+              src={user?.avatar ? `https://task-manager-fullstack-x3xn.onrender.com/${user.avatar}` : "https://upload.wikimedia.org/wikipedia/commons/6/6a/Mona_Lisa.jpg"}
               alt="Foto do usuário"
               className="w-13 h-13 rounded-full object-cover border-2 border-gray-200"
             />
