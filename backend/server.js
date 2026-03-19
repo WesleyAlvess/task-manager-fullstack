@@ -12,11 +12,10 @@ connectDB();
 
 const app = express();
 
-// habilita CORS para o front
 app.use(cors({
-  origin: true,
+  origin: ["https://tasksmanagerw.netlify.app"],
   methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true
+  credentials: true,
 }));
 
 // Middleware
