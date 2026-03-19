@@ -1,82 +1,82 @@
-# TaskFlow - Full Stack Task Manager
+# TaskFlow
 
-## 📌 About the Project
+TaskFlow é um gerenciador de tarefas full stack desenvolvido com React, Node.js e MongoDB.
 
-TaskFlow is a Full Stack task management application that allows users to organize and track their daily tasks efficiently.
-
-The application includes user authentication, task creation, editing, deletion, deadlines, reminders, and profile customization.
-
-This project was built to practice and demonstrate full stack development, integrating a modern frontend with a RESTful backend and database.
+A aplicação permite criar, organizar e acompanhar tarefas com deadlines e lembretes, utilizando uma interface moderna e responsiva.
 
 ---
 
-## 🚀 Features
+## Funcionalidades
 
-* User authentication (Register & Login)
-* Create, edit and delete tasks
-* Mark tasks as completed
-* Task deadlines and reminders
-* User profile with avatar upload
-* Responsive dashboard interface
+- Autenticação de usuários (login e cadastro)
+- Criar, editar e excluir tarefas
+- Marcar tarefas como concluídas
+- Definir deadlines e lembretes
+- Filtros de tarefas (todas, pendentes, concluídas, vencidas)
+- Layout responsivo (mobile e desktop)
+- Sidebar mobile com menu deslizante
+- Indicadores visuais de urgência com cores dinâmicas nas tarefas
+- Envio de emails de lembrete para o usuário
 
 ---
 
-## 🛠 Technologies Used
+## Tecnologias
 
 ### Frontend
-
-* React
-* TailwindCSS
-* Context API
+- React
+- Vite
+- Tailwind CSS
+- Axios
+- Context API
+- React Hot Toast
+- Lucide React
+- React Icons
 
 ### Backend
-
-* Node.js
-* Express
-
-### Database
-
-* MongoDB
-
----
-
-## 🎯 Purpose of the Project
-
-The goal of this project is to demonstrate the development of a complete Full Stack application, including authentication, API creation, database integration and a responsive user interface.
+- Node.js
+- Express
+- MongoDB
+- Mongoose
+- JWT
+- BcryptJS
+- Multer
+- Node-Cron
+- Nodemailer
+- Dotenv
+- CORS
 
 ---
 
-## ⚙️ Installation
+## Instalação
 
-Clone the repository
+Clone o repositório:
 
 ```bash
-git clone https://github.com/your-username/taskflow-fullstack.git
+git clone https://github.com/your-username/taskflow-fullstack.git 
 ```
 
-Install dependencies
-
+## Backend
 ```bash
+cd backend
 npm install
 ```
 
-Run the project
-
+## Frontend
 ```bash
+cd frontend
+npm install
 npm run dev
 ```
 
----
+## Variáveis de Ambiente
+```env
+MONGO_URI=your_mongodb_connection
+JWT_SECRET=your_secret_key
+EMAIL_USER=your_email
+EMAIL_PASS=your_email_password
+```
+## 🎯 Objetivo
 
-## 📷 Future Improvements
+Este projeto foi desenvolvido para demonstrar habilidades em desenvolvimento full stack, incluindo construção de APIs, autenticação, integração com banco de dados e criação de interfaces responsivas.
 
-* Email reminders
-* Task categories
-* Notifications system
-* Drag and drop task organization
-
----
-
-## 👨‍💻 Author
-
-Developed by Wesley Alves
+Busco aplicar esses conhecimentos em um ambiente profissional como desenvolvedor.
