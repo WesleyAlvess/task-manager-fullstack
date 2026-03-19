@@ -1,6 +1,7 @@
 // Components
 import UserProfile from "../user/UserProfile";
 import CreateTaskForm from "../tasks/CreateTaskForm"
+import logo from "../../assets/taskflow-logo.svg";
 
 const Sidebar = ({ onCreateTask, isSidebarOpen, setIsSidebarOpen }) => {
   return (
@@ -19,9 +20,12 @@ const Sidebar = ({ onCreateTask, isSidebarOpen, setIsSidebarOpen }) => {
           ✕
         </button>
       </div>
-      <h1 className="text-2xl font-semibold text-gray-800 text-center mb-6">
-        SaaS Task Manager
-      </h1>
+      <div className="flex items-center gap-2 mb-6">
+        <img src={logo} alt="TaskFlow" className="w-8 h-8" />
+        <h1 className="text-2xl font-semibold text-gray-800">
+          Task<span className="text-blue-500">Manager</span>
+        </h1>
+      </div>
       <UserProfile />
       <div className="mt-6">
         <CreateTaskForm onCreateTask={onCreateTask} />

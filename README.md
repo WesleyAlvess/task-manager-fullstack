@@ -1,4 +1,4 @@
-# TaskFlow
+# TaskManager
 
 TaskFlow é um gerenciador de tarefas full stack desenvolvido com React, Node.js e MongoDB.
 
@@ -52,7 +52,7 @@ A aplicação permite criar, organizar e acompanhar tarefas com deadlines e lemb
 Clone o repositório:
 
 ```bash
-git clone https://github.com/your-username/taskflow-fullstack.git 
+git clone https://github.com/WesleyAlvess/task-manager-fullstack.git
 ```
 
 ## Backend
