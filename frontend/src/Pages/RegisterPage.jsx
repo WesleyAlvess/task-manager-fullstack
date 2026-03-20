@@ -58,13 +58,13 @@ const RegisterPage = ({ goToLogin }) => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex items-center justify-center min-h-screen bg-gray-100 px-4 sm:items-center sm:pt-0">
 
-      <div className="bg-white shadow-xl rounded-xl p-10 w-full max-w-md">
+      <div className="bg-white shadow-lg sm:shadow-xl rounded-xl p-6 sm:p-10 w-full max-w-sm sm:max-w-md">
 
         {/* título */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-800">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">
             Bem-vindo ao Tasks
           </h1>
           <p className="text-gray-500 text-sm mt-2">
@@ -100,7 +100,7 @@ const RegisterPage = ({ goToLogin }) => {
 
           <button
             type="submit"
-            className="w-full bg-green-500 text-white font-semibold py-3 rounded-lg hover:bg-green-600 transition"
+            className="w-full bg-blue-500 text-white font-semibold py-2.5 sm:py-3 rounded-lg hover:bg-blue-600 transition"
           >
             Criar Conta
           </button>
