@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { register } from "../services/api";
-
-// Toast
 import { AppToast } from "../components/tasks/AppToast";
 
 const RegisterPage = ({ goToLogin }) => {
@@ -12,72 +10,67 @@ const RegisterPage = ({ goToLogin }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // validação "Campos não Peenchidos"
     if (!name || !email || !password) {
       AppToast({
         type: "error",
-        message: "⚠️ Preencha todos os campos"
+        message: "⚠️ Preencha todos os campos",
       });
       return;
     }
 
-    // Validação "Email"
     if (!/\S+@\S+\.\S+/.test(email)) {
       AppToast({
         type: "error",
-        message: "⚠️ Email inválido"
+        message: "⚠️ Email inválido",
       });
       return;
     }
 
-    // Validação "Senha"
     if (password.length < 6) {
       AppToast({
         type: "error",
-        message: "⚠️ A senha deve ter no mínimo 6 caracteres"
+        message: "⚠️ A senha deve ter no mínimo 6 caracteres",
       });
       return;
     }
 
-
     try {
       await register({ name, email, password });
+
       AppToast({
         type: "success",
-        message: "🎉 Conta criada com sucesso!"
+        message: "🎉 Conta criada com sucesso!",
       });
 
       goToLogin();
     } catch (error) {
+      console.error(error);
+
       AppToast({
         type: "error",
-        message: "❌ Erro ao criar conta"
+        message: error.response?.data?.message || "❌ Erro ao criar conta",
       });
-      confirm.error(error)
     }
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-
-      <div className="bg-white shadow-xl rounded-xl p-10 w-full max-w-md">
-
-        {/* título */}
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4 py-6">
+      <div className="bg-white shadow-xl rounded-xl p-6 sm:p-10 w-full max-w-md">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-800">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">
             Bem-vindo ao Tasks
           </h1>
+
           <p className="text-gray-500 text-sm mt-2">
             Crie sua conta para começar a organizar tarefas
           </p>
         </div>
 
         <form onSubmit={handleSubmit} noValidate className="space-y-4">
-
           <input
             type="text"
             placeholder="Nome"
-            className="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-green-400"
+            className="w-full border border-gray-300 rounded-lg p-3 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-green-400"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
@@ -85,7 +78,7 @@ const RegisterPage = ({ goToLogin }) => {
           <input
             type="email"
             placeholder="Email"
-            className="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-green-400"
+            className="w-full border border-gray-300 rounded-lg p-3 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-green-400"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -93,7 +86,7 @@ const RegisterPage = ({ goToLogin }) => {
           <input
             type="password"
             placeholder="Senha"
-            className="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-green-400"
+            className="w-full border border-gray-300 rounded-lg p-3 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-green-400"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
@@ -104,14 +97,10 @@ const RegisterPage = ({ goToLogin }) => {
           >
             Criar Conta
           </button>
-
         </form>
 
-        {/* voltar login */}
         <div className="mt-6 text-center border-t pt-4">
-          <p className="text-sm text-gray-500">
-            Já tem uma conta?
-          </p>
+          <p className="text-sm text-gray-500">Já tem uma conta?</p>
 
           <button
             onClick={goToLogin}
@@ -120,9 +109,7 @@ const RegisterPage = ({ goToLogin }) => {
             Fazer Login
           </button>
         </div>
-
       </div>
-
     </div>
   );
 };

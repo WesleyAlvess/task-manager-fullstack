@@ -12,24 +12,20 @@ connectDB();
 
 const app = express();
 
-// 🔐 CORS CONFIGURADO (seguro)
-const allowedOrigins = [
-  "http://localhost:5173",
-  "https://pageley.netlify.app",
-  "https://task-manager-fullstack-x3xn.netlify.app" // coloca aqui o seu domínio atual se for outro
-];
-
+// CORS 
 app.use(cors({
   origin: function (origin, callback) {
-    // permite requisições sem origin (Postman, mobile, etc)
     if (!origin) return callback(null, true);
 
-    if (allowedOrigins.includes(origin)) {
+    if (
+      origin.includes("localhost") ||
+      origin.includes("netlify.app")
+    ) {
       return callback(null, true);
-    } else {
-      console.log("CORS bloqueou:", origin);
-      return callback(new Error("Não permitido pelo CORS"));
     }
+
+    console.log("CORS bloqueou:", origin);
+    return callback(new Error("Não permitido pelo CORS"));
   },
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
   credentials: true
