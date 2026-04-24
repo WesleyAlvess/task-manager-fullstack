@@ -15,7 +15,6 @@ This project was built to practice and demonstrate full stack development, integ
 * User authentication (Register & Login)
 * Create, edit and delete tasks
 * Mark tasks as completed
-* Task deadlines and reminders
 * User profile with avatar upload
 * Responsive dashboard interface
 
