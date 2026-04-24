@@ -1,31 +1,27 @@
 import { AppToast } from "../tasks/AppToast";
-
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
-
 import { uploadAvatar } from "../../services/api";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+const API_BASE_URL = "https://task-manager-fullstack-x3xn.onrender.com";
 
 const UserProfile = () => {
   const { user, token, setUser } = useContext(AuthContext);
+  const [imgError, setImgError] = useState(false);
+  const [version, setVersion] = useState(Date.now());
 
   const logout = () => {
-    try {
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
 
-      AppToast({
-        type: "success",
-        message: "👋 Você saiu da conta!",
-      });
+    AppToast({
+      type: "success",
+      message: "👋 Você saiu da conta!",
+    });
 
-      setTimeout(() => {
-        window.location.href = "/login";
-      }, 1200);
-    } catch (error) {
-      console.error(error);
-    }
+    setTimeout(() => {
+      window.location.href = "/login";
+    }, 1200);
   };
 
   const handleUpload = async (e) => {
@@ -35,39 +31,63 @@ const UserProfile = () => {
     try {
       const res = await uploadAvatar(token, file);
 
+      const avatarPath = res.data.avatar;
+
       setUser((prev) => {
-        const updatedUser = { ...prev, avatar: res.data.avatar };
+        const updatedUser = {
+          ...prev,
+          avatar: avatarPath,
+        };
+
         localStorage.setItem("user", JSON.stringify(updatedUser));
         return updatedUser;
       });
+
+      setImgError(false);
+      setVersion(Date.now());
 
       AppToast({
         type: "success",
         message: "Avatar atualizado!",
       });
+
+      e.target.value = "";
     } catch (error) {
       console.error(error);
 
       AppToast({
         type: "error",
-        message: "Erro ao atualizar avatar",
+        message: error.response?.data?.message || "Erro ao atualizar avatar",
       });
     }
   };
 
-  const avatarUrl = user?.avatar
-    ? `${API_URL}/${user.avatar}`
-    : null;
+  const getAvatarUrl = () => {
+    if (!user?.avatar) return null;
+
+    const cleanPath = user.avatar
+      .replaceAll("\\", "/")
+      .replace(/^\/+/, "");
+
+    if (cleanPath.startsWith("http")) {
+      return `${cleanPath}?v=${version}`;
+    }
+
+    return `${API_BASE_URL}/${cleanPath}?v=${version}`;
+  };
+
+  const avatarUrl = getAvatarUrl();
 
   return (
     <div>
       <div className="border-b border-gray-200 pb-4 mb-6">
         <div className="flex items-center gap-3 mb-4">
-          {avatarUrl ? (
+          {avatarUrl && !imgError ? (
             <img
               src={avatarUrl}
               alt="Foto do usuário"
               className="w-13 h-13 rounded-full object-cover border-2 border-gray-200"
+              onError={() => setImgError(true)}
             />
           ) : (
             <div className="w-13 h-13 rounded-full bg-gray-200 text-gray-700 flex items-center justify-center font-semibold">
