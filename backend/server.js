@@ -12,8 +12,28 @@ connectDB();
 
 const app = express();
 
-// 🔥 CORS LIBERADO (para não travar seu projeto agora)
-app.use(cors());
+// 🔐 CORS CONFIGURADO (seguro)
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://pageley.netlify.app",
+  "https://task-manager-fullstack-x3xn.netlify.app" // coloca aqui o seu domínio atual se for outro
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    // permite requisições sem origin (Postman, mobile, etc)
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      console.log("CORS bloqueou:", origin);
+      return callback(new Error("Não permitido pelo CORS"));
+    }
+  },
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+  credentials: true
+}));
 
 // Middleware
 app.use(express.json());
