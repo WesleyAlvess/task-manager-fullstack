@@ -12,34 +12,25 @@ connectDB();
 
 const app = express();
 
-const allowedOrigins = [
-  "http://localhost:5173",
-  "https://pageley.netlify.app"
-];
+// 🔥 CORS LIBERADO (para não travar seu projeto agora)
+app.use(cors());
 
-app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Não permitido pelo CORS"));
-    }
-  },
-  methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
-  credentials: true
-}));
-
+// Middleware
 app.use(express.json());
 
+// Rota teste
 app.get("/", (req, res) => {
   res.send("API funcionando");
 });
 
+// Servir uploads
 app.use("/uploads", express.static("uploads"));
 
+// Rotas
 app.use("/api/auth", authRoutes);
 app.use("/api/tasks", taskRoutes);
 
+// Error handler
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 3000;
