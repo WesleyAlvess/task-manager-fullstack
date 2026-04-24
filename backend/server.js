@@ -4,7 +4,7 @@ import connectDB from "./src/config/db.js";
 import authRoutes from "./src/routes/authRoutes.js";
 import taskRoutes from "./src/routes/taskRoutes.js";
 import { errorHandler } from "./src/middleware/errorMiddleware.js";
-import cors from "cors"
+import cors from "cors";
 import "./src/jobs/taskReminder.js";
 
 dotenv.config();
@@ -12,25 +12,38 @@ connectDB();
 
 const app = express();
 
-// habilita CORS para o front
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://pageley.netlify.app"
+];
+
 app.use(cors({
-  origin: "http://localhost:5173", // endereço do seu front
-  methods: ["GET", "POST", "PUT", "DELETE"],
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Não permitido pelo CORS"));
+    }
+  },
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
   credentials: true
 }));
 
-// Middleware
 app.use(express.json());
 
-// Servir Imagens
-app.use("/uploads", express.static("uploads"))
+app.get("/", (req, res) => {
+  res.send("API funcionando");
+});
 
-// Routes
+app.use("/uploads", express.static("uploads"));
+
 app.use("/api/auth", authRoutes);
 app.use("/api/tasks", taskRoutes);
 
-// Error handling
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
+
+app.listen(PORT, () => {
+  console.log(`Servidor rodando na porta ${PORT}`);
+});
