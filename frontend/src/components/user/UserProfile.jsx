@@ -20,7 +20,7 @@ const UserProfile = () => {
     });
 
     setTimeout(() => {
-      window.location.href = "/login";
+      window.location.replace("/");
     }, 1200);
   };
 
