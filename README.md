@@ -1,81 +1,91 @@
-# TaskFlow - Full Stack Task Manager
+# 🚀 TaskFlow — Full Stack Task Manager
 
 ## 📌 About the Project
 
-TaskFlow is a Full Stack task management application that allows users to organize and track their daily tasks efficiently.
+TaskFlow is a full stack task management application built to demonstrate real-world development skills.
 
-The application includes user authentication, task creation, editing, deletion, deadlines, reminders, and profile customization.
+The application allows users to manage tasks with authentication, interact with a REST API and use a responsive interface.
 
-This project was built to practice and demonstrate full stack development, integrating a modern frontend with a RESTful backend and database.
+This project showcases my ability to build and deploy a complete full stack application using modern technologies.
+
+---
+
+## 🔥 Live Demo
+
+👉 https://tasksmanagerw.netlify.app
 
 ---
 
 ## 🚀 Features
 
-* User authentication (Register & Login)
-* Create, edit and delete tasks
-* Mark tasks as completed
-* User profile with avatar upload
-* Responsive dashboard interface
+- Authentication with JWT (Register & Login)
+- Full CRUD for tasks
+- Mark tasks as completed
+- Task filtering (all, pending, completed)
+- User profile with avatar upload
+- Responsive UI (mobile-first)
+- REST API integration
+- Deployed frontend and backend
 
 ---
 
-## 🛠 Technologies Used
+## 🛠 Tech Stack
 
 ### Frontend
-
-* React
-* TailwindCSS
-* Context API
+- React
+- Tailwind CSS
+- Context API
 
 ### Backend
-
-* Node.js
-* Express
+- Node.js
+- Express
 
 ### Database
-
-* MongoDB
+- MongoDB
 
 ---
 
-## 🎯 Purpose of the Project
+## 🎯 What I Learned
 
-The goal of this project is to demonstrate the development of a complete Full Stack application, including authentication, API creation, database integration and a responsive user interface.
+- Building authentication with JWT
+- Creating REST APIs with Node.js and Express
+- Managing global state with Context API
+- Connecting frontend and backend
+- Handling file uploads (avatar)
+- Deploying full stack applications (Netlify + Render)
 
 ---
 
 ## ⚙️ Installation
 
-Clone the repository
+Clone the repository:
 
-```bash
-git clone https://github.com/your-username/taskflow-fullstack.git
-```
+git clone https://github.com/WesleyAlvess/task-manager-fullstack.git
 
-Install dependencies
+Navigate to the project folder:
 
-```bash
+cd task-manager-fullstack
+
+Install dependencies:
+
 npm install
-```
 
-Run the project
+Run the project:
 
-```bash
 npm run dev
-```
 
 ---
 
-## 📷 Future Improvements
+## 📈 Future Improvements
 
-* Email reminders
-* Task categories
-* Notifications system
-* Drag and drop task organization
+- Email notifications
+- Task categories
+- Drag & drop tasks
+- Real-time updates
 
 ---
 
 ## 👨‍💻 Author
 
-Developed by Wesley Alves
+Wesley Alves  
+Full Stack Developer (React + Node.js)
